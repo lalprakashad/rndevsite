@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — RelNet Operations</title>
+  <link href="assets/favicon.ico" rel="icon">
+  <link href="assets/favicon.ico" rel="apple-touch-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Outfit:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --void: #020408;
+      --cyan: #00f5ff;
+      --cyan-dim: rgba(0, 245, 255, 0.1);
+      --cyan-glow: rgba(0, 245, 255, 0.3);
+      --amber: #ffb800;
+      --white: #e8f4ff;
+      --muted: rgba(232, 244, 255, 0.45);
+      --border: rgba(0, 245, 255, 0.12);
+      --f-display: 'Orbitron', monospace;
+      --f-body: 'Outfit', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--void);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: none
+    }
+
+    #cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--cyan);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 245, 255, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.18s cubic-bezier(.25, .46, .45, .94)
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+      pointer-events: none;
+      z-index: 1
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 72px;
+      background: rgba(2, 4, 8, 0.8);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    nav::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      width: 100%;
+      animation: navline 4s ease-in-out infinite
+    }
+
+    @keyframes navline {
+
+      0%,
+      100% {
+        opacity: 0.3
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--cyan);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--f-display);
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: var(--cyan);
+      animation: logoPulse 3s ease-in-out infinite
+    }
+
+    @keyframes logoPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 10px var(--cyan-glow)
+      }
+
+      50% {
+        box-shadow: 0 0 25px var(--cyan-glow)
+      }
+    }
+
+    .logo-text {
+      font-family: var(--f-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white)
+    }
+
+    .logo-text span {
+      color: var(--cyan)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--cyan);
+      transition: width 0.3s
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan)
+    }
+
+    .nav-links a:hover::after {
+      width: 100%
+    }
+
+    .nav-cta {
+      color: var(--void) !important;
+      background: var(--cyan);
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 20px var(--cyan-glow)
+    }
+
+    .nav-cta::after {
+      display: none !important
+    }
+
+    .page-hero {
+      padding: 140px 60px 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 245, 255, 0.04), transparent);
+      pointer-events: none
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2
+    }
+
+    .breadcrumb a {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      text-decoration: none
+    }
+
+    .breadcrumb span {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      color: rgba(0, 245, 255, 0.3)
+    }
+
+    .breadcrumb .curr {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .pg-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2
+    }
+
+    .pg-tag .br {
+      color: rgba(0, 245, 255, 0.35)
+    }
+
+    .page-hero h1 {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      position: relative;
+      z-index: 2
+    }
+
+    .page-hero h1 .alt {
+      color: var(--cyan)
+    }
+
+    .page-meta {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap
+    }
+
+    .meta-chip {
+      font-family: var(--f-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(0, 245, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 3px
+    }
+
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 60px 120px
+    }
+
+    .summary-box {
+      background: rgba(0, 245, 255, 0.05);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-left: 3px solid var(--cyan);
+      padding: 24px 28px;
+      margin-bottom: 60px;
+      border-radius: 0 8px 8px 0
+    }
+
+    .summary-box p {
+      font-size: 0.92rem;
+      color: rgba(232, 244, 255, 0.7);
+      line-height: 1.7;
+      font-weight: 300
+    }
+
+    .summary-box strong {
+      color: var(--cyan);
+      font-weight: 600
+    }
+
+    .doc-section {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+    }
+
+    .doc-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0
+    }
+
+    .sec-num {
+      font-family: var(--f-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(0, 245, 255, 0.35);
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .doc-section h2 {
+      font-family: var(--f-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .doc-section h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 245, 255, 0.15), transparent)
+    }
+
+    .doc-section p {
+      font-size: 0.91rem;
+      color: var(--muted);
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 12px
+    }
+
+    .doc-section p:last-child {
+      margin-bottom: 0
+    }
+
+    .doc-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .doc-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300
+    }
+
+    .doc-list li::before {
+      content: '›';
+      color: var(--cyan);
+      flex-shrink: 0;
+      font-size: 1rem;
+      margin-top: 1px
+    }
+
+    .doc-list li strong {
+      color: rgba(232, 244, 255, 0.8);
+      font-weight: 500
+    }
+
+    .doc-link {
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 245, 255, 0.3);
+      transition: border-color 0.2s
+    }
+
+    .doc-link:hover {
+      border-color: var(--cyan)
+    }
+
+    footer {
+      background: #010306;
+      border-top: 1px solid var(--border);
+      padding: 60px 60px 30px;
+      position: relative
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      animation: navline 6s ease-in-out infinite
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px
+    }
+
+    .footer-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 14px 0 20px;
+      font-weight: 300
+    }
+
+    .footer-ci {
+      font-size: 0.82rem;
+      color: rgba(232, 244, 255, 0.4);
+      line-height: 2
+    }
+
+    .footer-ci strong {
+      color: rgba(232, 244, 255, 0.6)
+    }
+
+    .fct {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 22px
+    }
+
+    .fl {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .fl a {
+      font-size: 0.86rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s
+    }
+
+    .fl a::before {
+      content: '›';
+      color: rgba(0, 245, 255, 0.3);
+      transition: color 0.2s
+    }
+
+    .fl a:hover {
+      color: var(--white)
+    }
+
+    .fl a:hover::before {
+      color: var(--cyan)
+    }
+
+    .fb {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    .fb p {
+      font-family: var(--f-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: rgba(232, 244, 255, 0.2);
+      text-transform: uppercase
+    }
+
+    .bk {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 600;
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--cyan);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      padding: 10px 14px;
+      text-decoration: none;
+      background: rgba(2, 4, 8, 0.8);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))
+    }
+
+    .bk.show {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .bk:hover {
+      background: rgba(0, 245, 255, 0.08);
+      box-shadow: 0 0 20px var(--cyan-glow)
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 20px
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .page-hero,
+      .content-wrap {
+        padding-left: 20px;
+        padding-right: 20px
+      }
+
+      .page-hero {
+        padding-top: 100px
+      }
+
+      .content-wrap {
+        padding: 48px 20px 80px
+      }
+
+      footer {
+        padding: 48px 20px 24px
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr
+      }
+
+      .fb {
+        flex-direction: column;
+        text-align: center
+      }
+
+      body {
+        cursor: auto
+      }
+
+      #cursor,
+      #cursor-ring {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <nav>
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon">RN</div>
+      <span class="logo-text">Rel<span>Net</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span class="curr">Terms of Service</span>
+    </div>
+    <div class="pg-tag"><span class="br">[</span>&nbsp;Legal Document&nbsp;<span class="br">]</span></div>
+    <h1>Terms of <span class="alt">Service</span></h1>
+    <div class="page-meta">
+      <div class="meta-chip">Effective: 20 August 2025</div>
+      <div class="meta-chip">RelNet Operations Private Ltd</div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="summary-box reveal">
+      <p><strong>Summary:</strong> By using our website and services, you agree to these terms. We provide IT,
+        networking, and telecom services and expect all users to engage lawfully and respectfully. Please read in full
+        before proceeding.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 01 ]</div>
+      <h2>Acceptance of Terms</h2>
+      <p>By accessing or using the RelNet Operations website ("Site") or any services provided by RelNet Operations
+        ("Services"), you agree to be bound by these Terms of Service and our <a href="privacy.html"
+          class="doc-link">Privacy Policy</a>. If you do not agree, do not use the Site or Services.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 02 ]</div>
+      <h2>Services</h2>
+      <p>RelNet Operations provides IT solutions, networking infrastructure, telecom integration, consulting, and
+        related technology services. Any information on the Site is for general information only and may change without
+        notice.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 03 ]</div>
+      <h2>Eligibility & Account</h2>
+      <p>You must be legally capable of entering into a binding contract to use our Services. If you create an account
+        (where applicable), you are responsible for maintaining the confidentiality of your credentials and for all
+        activities under your account.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 04 ]</div>
+      <h2>Acceptable Use</h2>
+      <ul class="doc-list">
+        <li>Do not use the Site or Services for unlawful, harmful, or fraudulent activities.</li>
+        <li>Do not attempt to gain unauthorized access to systems or data.</li>
+        <li>Do not introduce malware, spam, or automated scraping without permission.</li>
+        <li>Provide accurate information when communicating with us.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 05 ]</div>
+      <h2>Intellectual Property</h2>
+      <p>All content on the Site—including trademarks, logos, text, graphics, and code—is owned by or licensed to RelNet
+        Operations and is protected by applicable intellectual property laws. You may not reproduce, distribute, or
+        create derivative works without prior written permission.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 06 ]</div>
+      <h2>Third-Party Content & Links</h2>
+      <p>The Site may contain links to third-party websites or resources. We are not responsible for their content,
+        products, services, or privacy practices, and you access them at your own risk.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 07 ]</div>
+      <h2>Disclaimers</h2>
+      <p>The Site and Services are provided on an "as is" and "as available" basis. To the fullest extent permitted by
+        law, we disclaim all warranties, express or implied, including warranties of merchantability, fitness for a
+        particular purpose, and non-infringement.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 08 ]</div>
+      <h2>Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, RelNet Operations and its directors, employees, and agents shall not be
+        liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, data,
+        or goodwill arising out of or related to your use of the Site or Services.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 09 ]</div>
+      <h2>Indemnification</h2>
+      <p>You agree to defend, indemnify, and hold harmless RelNet Operations from and against any claims, liabilities,
+        damages, losses, and expenses—including reasonable legal fees—arising out of or in any way connected with your
+        use of the Site or Services or your violation of these Terms.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 10 ]</div>
+      <h2>Privacy</h2>
+      <p>Your use of the Site and Services is also subject to our <a href="privacy.html" class="doc-link">Privacy
+          Policy</a>, which explains how we collect, use, and protect your information.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 11 ]</div>
+      <h2>Suspension & Termination</h2>
+      <p>We may suspend or terminate access to the Site or Services at any time, with or without notice, for conduct
+        that we believe violates these Terms or is otherwise harmful to RelNet Operations or its users.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 12 ]</div>
+      <h2>Changes to the Terms</h2>
+      <p>We may update these Terms from time to time. The "Effective Date" above indicates the latest revision.
+        Continued use of the Site or Services after changes become effective constitutes your acceptance of the updated
+        Terms.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 13 ]</div>
+      <h2>Governing Law & Dispute Resolution</h2>
+      <p>These Terms are governed by the laws of India, without regard to conflict of law principles. Any disputes shall
+        be subject to the exclusive jurisdiction of courts in Bengaluru, Karnataka, unless otherwise required by
+        applicable law.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 14 ]</div>
+      <h2>Contact</h2>
+      <p>If you have questions about these Terms, please contact us at <a href="mailto:admin@relnetservices.com"
+          class="doc-link">admin@relnetservices.com</a> or visit our office at No.198, CMH Road, Second Floor,
+        Indiranagar, Bengaluru, Karnataka 560038.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo-wrap">
+          <div class="logo-icon">RN</div>
+          <span class="logo-text">Rel<span>Net</span></span>
+        </a>
+        <p class="footer-desc">Architecting intelligent telecom and IT infrastructures that drive business
+          transformation.</p>
+        <div class="footer-ci">
+          <div>No.198, CMH Road, Indiranagar, Bengaluru 560038</div>
+          <div><strong>Email:</strong> admin@relnetservices.com</div>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Quick Links</div>
+        <ul class="fl">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fct">Services</div>
+        <ul class="fl">
+          <li><a href="#">Networking Solutions</a></li>
+          <li><a href="#">Application Support</a></li>
+          <li><a href="#">Telecom & UC</a></li>
+          <li><a href="#">IT Management</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb">
+      <p>© 2025 RelNet Operations Private Ltd — All Rights Reserved</p>
+      <p>Developed by RelNet Operations</p>
+    </div>
+  </footer>
+
+  <a href="#" class="bk" id="bk">↑ TOP</a>
+
+  <script>
+    const cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
+    (function loop() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop) })();
+    window.addEventListener('scroll', () => document.getElementById('bk').classList.toggle('show', scrollY > 300));
+    const obs = new IntersectionObserver(entries => entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 90); obs.unobserve(e.target) } }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+
+</html>

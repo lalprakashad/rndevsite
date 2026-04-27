@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — RelNet Operations</title>
+  <link href="assets/favicon.ico" rel="icon">
+  <link href="assets/favicon.ico" rel="apple-touch-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Outfit:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --void: #020408;
+      --cyan: #00f5ff;
+      --cyan-dim: rgba(0, 245, 255, 0.1);
+      --cyan-glow: rgba(0, 245, 255, 0.3);
+      --amber: #ffb800;
+      --white: #e8f4ff;
+      --muted: rgba(232, 244, 255, 0.45);
+      --border: rgba(0, 245, 255, 0.12);
+      --f-display: 'Orbitron', monospace;
+      --f-body: 'Outfit', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--void);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: none
+    }
+
+    #cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--cyan);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 245, 255, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.18s cubic-bezier(.25, .46, .45, .94)
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+      pointer-events: none;
+      z-index: 1
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 72px;
+      background: rgba(2, 4, 8, 0.8);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    nav::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      width: 100%;
+      animation: navline 4s ease-in-out infinite
+    }
+
+    @keyframes navline {
+
+      0%,
+      100% {
+        opacity: 0.3
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--cyan);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--f-display);
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: var(--cyan);
+      animation: logoPulse 3s ease-in-out infinite
+    }
+
+    @keyframes logoPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 10px var(--cyan-glow)
+      }
+
+      50% {
+        box-shadow: 0 0 25px var(--cyan-glow)
+      }
+    }
+
+    .logo-text {
+      font-family: var(--f-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white)
+    }
+
+    .logo-text span {
+      color: var(--cyan)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--cyan);
+      transition: width 0.3s
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan)
+    }
+
+    .nav-links a:hover::after {
+      width: 100%
+    }
+
+    .nav-cta {
+      color: var(--void) !important;
+      background: var(--cyan);
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 20px var(--cyan-glow)
+    }
+
+    .nav-cta::after {
+      display: none !important
+    }
+
+    .page-hero {
+      padding: 140px 60px 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 245, 255, 0.04), transparent);
+      pointer-events: none
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2
+    }
+
+    .breadcrumb a {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      text-decoration: none
+    }
+
+    .breadcrumb span {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      color: rgba(0, 245, 255, 0.3)
+    }
+
+    .breadcrumb .curr {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .pg-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2
+    }
+
+    .pg-tag .br {
+      color: rgba(0, 245, 255, 0.35)
+    }
+
+    .page-hero h1 {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      position: relative;
+      z-index: 2
+    }
+
+    .page-hero h1 .alt {
+      color: var(--cyan)
+    }
+
+    .page-meta {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap
+    }
+
+    .meta-chip {
+      font-family: var(--f-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(0, 245, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 3px
+    }
+
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 60px 120px
+    }
+
+    .summary-box {
+      background: rgba(0, 245, 255, 0.05);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-left: 3px solid var(--amber);
+      padding: 24px 28px;
+      margin-bottom: 60px;
+      border-radius: 0 8px 8px 0
+    }
+
+    .summary-box p {
+      font-size: 0.92rem;
+      color: rgba(232, 244, 255, 0.7);
+      line-height: 1.7;
+      font-weight: 300
+    }
+
+    .summary-box strong {
+      color: var(--amber);
+      font-weight: 600
+    }
+
+    .doc-section {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+    }
+
+    .doc-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0
+    }
+
+    .sec-num {
+      font-family: var(--f-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(0, 245, 255, 0.35);
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .doc-section h2 {
+      font-family: var(--f-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .doc-section h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 245, 255, 0.15), transparent)
+    }
+
+    .doc-section p {
+      font-size: 0.91rem;
+      color: var(--muted);
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 12px
+    }
+
+    .doc-section p:last-child {
+      margin-bottom: 0
+    }
+
+    .doc-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .doc-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300
+    }
+
+    .doc-list li::before {
+      content: '›';
+      color: var(--cyan);
+      flex-shrink: 0;
+      font-size: 1rem;
+      margin-top: 1px
+    }
+
+    .doc-list li strong {
+      color: rgba(232, 244, 255, 0.8);
+      font-weight: 500
+    }
+
+    .doc-link {
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 245, 255, 0.3);
+      transition: border-color 0.2s
+    }
+
+    .doc-link:hover {
+      border-color: var(--cyan)
+    }
+
+    footer {
+      background: #010306;
+      border-top: 1px solid var(--border);
+      padding: 60px 60px 30px;
+      position: relative
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      animation: navline 6s ease-in-out infinite
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px
+    }
+
+    .footer-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 14px 0 20px;
+      font-weight: 300
+    }
+
+    .footer-ci {
+      font-size: 0.82rem;
+      color: rgba(232, 244, 255, 0.4);
+      line-height: 2
+    }
+
+    .footer-ci strong {
+      color: rgba(232, 244, 255, 0.6)
+    }
+
+    .fct {
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 22px
+    }
+
+    .fl {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .fl a {
+      font-size: 0.86rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s
+    }
+
+    .fl a::before {
+      content: '›';
+      color: rgba(0, 245, 255, 0.3);
+      transition: color 0.2s
+    }
+
+    .fl a:hover {
+      color: var(--white)
+    }
+
+    .fl a:hover::before {
+      color: var(--cyan)
+    }
+
+    .fb {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    .fb p {
+      font-family: var(--f-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: rgba(232, 244, 255, 0.2);
+      text-transform: uppercase
+    }
+
+    .bk {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 600;
+      font-family: var(--f-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--cyan);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      padding: 10px 14px;
+      text-decoration: none;
+      background: rgba(2, 4, 8, 0.8);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))
+    }
+
+    .bk.show {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .bk:hover {
+      background: rgba(0, 245, 255, 0.08);
+      box-shadow: 0 0 20px var(--cyan-glow)
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 20px
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .page-hero,
+      .content-wrap {
+        padding-left: 20px;
+        padding-right: 20px
+      }
+
+      .page-hero {
+        padding-top: 100px
+      }
+
+      .content-wrap {
+        padding: 48px 20px 80px
+      }
+
+      footer {
+        padding: 48px 20px 24px
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr
+      }
+
+      .fb {
+        flex-direction: column;
+        text-align: center
+      }
+
+      body {
+        cursor: auto
+      }
+
+      #cursor,
+      #cursor-ring {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <nav>
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon">RN</div>
+      <span class="logo-text">Rel<span>Net</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span class="curr">Privacy Policy</span>
+    </div>
+    <div class="pg-tag"><span class="br">[</span>&nbsp;Legal Document&nbsp;<span class="br">]</span></div>
+    <h1>Privacy <span class="alt">Policy</span></h1>
+    <div class="page-meta">
+      <div class="meta-chip">Effective: 20 August 2025</div>
+      <div class="meta-chip">RelNet Operations Private Ltd</div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="summary-box reveal">
+      <p><strong>Summary:</strong> We collect the minimum data necessary to operate our website and services, and we do
+        not sell your personal data. Your privacy is a priority — we handle all information with care and transparency.
+      </p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 01 ]</div>
+      <h2>Information We Collect</h2>
+      <ul class="doc-list">
+        <li><strong>Contact Data:</strong> name, email address, phone number, and message content when you contact us.
+        </li>
+        <li><strong>Usage Data:</strong> IP address, device information, browser type, pages visited, and timestamps.
+        </li>
+        <li><strong>Cookies & Similar Technologies:</strong> used to operate and improve the Site; you can control
+          cookies via your browser settings.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 02 ]</div>
+      <h2>How We Use Information</h2>
+      <ul class="doc-list">
+        <li>To respond to inquiries and provide our Services.</li>
+        <li>To operate, maintain, and improve the Site, including analytics.</li>
+        <li>To send service and policy notices (with consent where required).</li>
+        <li>To protect against, investigate, and deter fraudulent or illegal activity.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 03 ]</div>
+      <h2>Legal Bases</h2>
+      <p>Where applicable, we process personal data based on one or more of the following legal bases: consent,
+        performance of a contract, compliance with legal obligations, and our legitimate interests in operating and
+        improving our services.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 04 ]</div>
+      <h2>Sharing of Information</h2>
+      <ul class="doc-list">
+        <li><strong>Service Providers:</strong> trusted vendors who assist in operations (e.g., hosting, analytics),
+          bound by confidentiality obligations.</li>
+        <li><strong>Legal Compliance:</strong> to comply with applicable laws, regulations, or lawful requests from
+          authorities.</li>
+        <li><strong>Business Transfers:</strong> in connection with a merger, acquisition, or asset sale, with
+          appropriate safeguards.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 05 ]</div>
+      <h2>International Transfers</h2>
+      <p>We may transfer data to countries outside your own. Where required, we use appropriate safeguards consistent
+        with applicable laws to ensure your data remains protected.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 06 ]</div>
+      <h2>Data Retention</h2>
+      <p>We retain personal data only for as long as necessary for the purposes described in this Policy or as required
+        by applicable law. When data is no longer needed, it is securely deleted or anonymized.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 07 ]</div>
+      <h2>Your Rights</h2>
+      <ul class="doc-list">
+        <li>Access, correct, or delete your personal data held by us.</li>
+        <li>Object to or restrict certain types of processing.</li>
+        <li>Withdraw consent where processing is based on your consent.</li>
+        <li>Lodge a complaint with a supervisory authority where applicable.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 08 ]</div>
+      <h2>Cookies</h2>
+      <p>You can control or disable cookies through your browser settings. Disabling cookies may affect certain Site
+        features. We do not use cookies for targeted advertising or sell cookie data to third parties.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 09 ]</div>
+      <h2>Security</h2>
+      <p>We implement reasonable technical and organizational measures to protect personal data against unauthorized
+        access, alteration, disclosure, or destruction. However, no method of transmission or storage is completely
+        secure.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 10 ]</div>
+      <h2>Children's Privacy</h2>
+      <p>Our Site and Services are not directed to children under 13. We do not knowingly collect personal data from
+        children. If you believe a child has provided personal data to us, please contact us to request deletion.</p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 11 ]</div>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. The "Effective Date" above reflects the latest revision.
+        Your continued use of the Site after changes become effective signifies your acceptance of the updated Policy.
+      </p>
+    </div>
+
+    <div class="doc-section reveal">
+      <div class="sec-num">[ 12 ]</div>
+      <h2>Contact Us</h2>
+      <p>For privacy queries, data requests, or concerns, contact us at <a href="mailto:admin@relnetservices.com"
+          class="doc-link">admin@relnetservices.com</a> or visit our office at No.198, CMH Road, Second Floor,
+        Indiranagar, Bengaluru, Karnataka 560038.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo-wrap">
+          <div class="logo-icon">RN</div>
+          <span class="logo-text">Rel<span>Net</span></span>
+        </a>
+        <p class="footer-desc">Architecting intelligent telecom and IT infrastructures that drive business
+          transformation.</p>
+        <div class="footer-ci">
+          <div>No.198, CMH Road, Indiranagar, Bengaluru 560038</div>
+          <div><strong>Email:</strong> admin@relnetservices.com</div>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Quick Links</div>
+        <ul class="fl">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fct">Services</div>
+        <ul class="fl">
+          <li><a href="#">Networking Solutions</a></li>
+          <li><a href="#">Application Support</a></li>
+          <li><a href="#">Telecom & UC</a></li>
+          <li><a href="#">IT Management</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb">
+      <p>© 2025 RelNet Operations Private Ltd — All Rights Reserved</p>
+      <p>Developed by RelNet Operations</p>
+    </div>
+  </footer>
+
+  <a href="#" class="bk" id="bk">↑ TOP</a>
+
+  <script>
+    const cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
+    (function loop() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop) })();
+    window.addEventListener('scroll', () => document.getElementById('bk').classList.toggle('show', scrollY > 300));
+    const obs = new IntersectionObserver(entries => entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 90); obs.unobserve(e.target) } }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+
+</html>
